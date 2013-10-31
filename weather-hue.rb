@@ -25,8 +25,8 @@ light.on = true
 light.saturation = 180
 light.brightness = 200
 
-if weather.rain > args[:rain]
-  light.hue = 60000
+if weather.rain < args[:rain]
+  light.hue = 60000 # red
 else
-  light.hue = 46920
+  light.hue = 47000 # blue
 end
