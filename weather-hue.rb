@@ -8,6 +8,7 @@ args = ArgsParser.parse ARGV do
   arg :city, 'city', :alias => :c, :default => '東京'
   arg :rain, '降水確率のしきい値 (%)', :default => 30
   arg :help, 'show help', :alias => :h
+  arg :hue, 'hue light number', :default => 0
 
   on :help do
     STDERR.puts help
@@ -19,7 +20,7 @@ end
 weather = WeatherJp.get args[:city], :today
 puts "#{weather} - #{Time.now}"
 
-light = Hue::Client.new.lights[0]
+light = Hue::Client.new.lights[ args[:hue].to_i ]
 puts "light : #{light.name}"
 light.on = true
 light.saturation = 180
